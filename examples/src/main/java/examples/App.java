@@ -145,8 +145,8 @@ public class App {
             // Create new instance of the viber client.
             ViberClient viberClient = new ViberClient("<YOUR_ACCESS_KEY>");
 
-            // Create viber message object. This one will be transactional message with
-            // message text only.
+            // Create viber plus SMS message object. This one will be promotional message
+            // with message text, image and button..
             ViberMessage viberMessage = new ViberMessage();
             viberMessage.setSender("380504444444");
             viberMessage.setReceiver("380504444444");
@@ -221,10 +221,10 @@ public class App {
             message.setValidityPeriod(3600);
             message.setSmsText("SMS Text");
 
-            // Call client SendMessage method to send viber message.
+            // Call client SendMessage method to send viber plus SMS message.
             long messageId = viberPlusSmsClient.sendMessage(message);
 
-            // SendMessage method should return Id of the sent Viber message.
+            // SendMessage method should return Id of the sent Viber plus SMS message.
             System.out.printf("Message Id: %d\n", messageId);
         } catch (ViberException e) {
             // ViberException contains specific DecisionTelecom error with details of what
@@ -247,8 +247,8 @@ public class App {
             // Create new instance of the viber plus SMS client.
             ViberClient viberClient = new ViberClient("<YOUR_ACCESS_KEY>");
 
-            // Create viber plus SMS message object. This one will be transactional message
-            // with message text only.
+            // Create viber plus SMS message object. This one will be promotional message
+            // with message text, image and button..
             ViberPlusSmsMessage message = new ViberPlusSmsMessage();
             message.setSender("380504444444");
             message.setReceiver("380504444444");
@@ -287,7 +287,7 @@ public class App {
             // Create new instance of the viber plus SMS client.
             ViberPlusSmsClient viberPlusSmsClient = new ViberPlusSmsClient("<YOUR_ACCESS_KEY>");
 
-            // Call client GetMessageStatus method to get viber message status.
+            // Call client GetMessageStatus method to get viber plus SMS message status.
             ViberPlusSmsMessageReceipt receipt = viberPlusSmsClient.getMessageStatus(380752);
 
             // GetMessageStatus method should return status of the sent Viber plus SMS
