@@ -67,10 +67,10 @@ try {
 ```
 
 ### Error handling
-All client methods throw an exception in case if something went wrong during the operation. It might be a general exception in case of connection error, for example. Or it might be a specific DecisonTelecom exception with some details of what went wrong. 
+All client methods throw an exception in case if something went wrong during the operation. It might be a general exception in case of connection error, for example. Or it might be a specific DecisionTelecom exception with some details of what went wrong. 
 
 SMS client methods might throw `SmsException` which contains an SMS error code.
-Viber and Viber plus SMS client methods might throw `ViberException` which contains `ViberError` object with some error details.
+Viber and Viber plus SMS client methods might throw `ViberException` which contains `ViberError` object with some error details like name, message, status and code.
 
 See provided examples on how to handle specific DecisionTelecom exceptions.
 
