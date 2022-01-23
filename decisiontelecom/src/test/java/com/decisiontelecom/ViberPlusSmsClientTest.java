@@ -68,17 +68,14 @@ public class ViberPlusSmsClientTest {
 
     @Test
     public void testSendMessageReturnsNotSuccessStatusCode() throws Exception {
-        ViberError expectedError = new ViberError("Unauthorized", 401);
-        String responseContent = new Gson().toJson(expectedError);
+        String expectedError = "An error occurred while processing request. Response code: 401 (Unauthorized)";
 
-        setupHttpResponse(responseContent, 401, "Unauthorized");
+        setupHttpResponse("General error message", 401, "Unauthorized");
 
         try {
             viberPlusSmsClient.sendMessage(new ViberPlusSmsMessage());
-        } catch (ViberException e) {
-            ViberError error = e.getError();
-            assertTrue(expectedError.getName().equalsIgnoreCase(error.getName()));
-            assertTrue(expectedError.getStatus() == error.getStatus());
+        } catch (Exception e) {
+            assertTrue(expectedError.equalsIgnoreCase(e.getMessage()));
         }
     }
 
@@ -121,17 +118,14 @@ public class ViberPlusSmsClientTest {
 
     @Test
     public void testGetMessageStatusReturnsNotSuccessStatusCode() throws Exception {
-        ViberError expectedError = new ViberError("Unauthorized", 401);
-        String responseContent = new Gson().toJson(expectedError);
+        String expectedError = "An error occurred while processing request. Response code: 401 (Unauthorized)";
 
-        setupHttpResponse(responseContent, 401, "Unauthorized");
+        setupHttpResponse("General error message", 401, "Unauthorized");
 
         try {
             viberPlusSmsClient.getMessageStatus(429);
-        } catch (ViberException e) {
-            ViberError error = e.getError();
-            assertTrue(expectedError.getName().equalsIgnoreCase(error.getName()));
-            assertTrue(expectedError.getStatus() == error.getStatus());
+        } catch (Exception e) {
+            assertTrue(expectedError.equalsIgnoreCase(e.getMessage()));
         }
     }
 

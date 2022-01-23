@@ -115,9 +115,11 @@ public class ViberClient {
             wr.close();
 
             // Process unsuccessful response status codes
-            if (!(connection.getResponseCode() >= 200 && connection.getResponseCode() < 300)) {
-                ViberError error = new ViberError(connection.getResponseMessage(), connection.getResponseCode());
-                throw new ViberException(error);
+            if (connection.getResponseCode() < 200 || connection.getResponseCode() >= 300) {
+                throw new IOException(
+                        String.format("An error occurred while processing request. Response code: %d (%s)",
+                                connection.getResponseCode(),
+                                connection.getResponseMessage()));
             }
 
             // Get Response

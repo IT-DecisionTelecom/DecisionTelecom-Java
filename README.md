@@ -91,17 +91,7 @@ SMS client methods return errors in form of the error code. Here are all possibl
 - 51 - Invalid phone number
 
 #### Viber errors
-Viber and Viber plus SMS client methods return errors in form of a struct with the `Name`, `Message`, `Code` and `Status` properties.
-
-If underlying API request returns unsuccessful status code (like 401 Unauthorized),
-then client methods will return error with only `Name` and `Status` properties set:
-
-```json
-{
-  "name": "Unauthorized",
-  "status": 401
-}
-```
+Viber and Viber plus SMS client methods return errors in form of a class with the `name`, `message`, `code` and `status` properties.
 
 Known Viber errors are:
 
