@@ -30,7 +30,6 @@ public class App {
         viberGetMessageStatus();
 
         viberPlusSmsSendTransactionalMessage();
-        viberPlusSmsSendPromotionalMessage();
         viberPlusSmsGetMessageStatus();
     }
 
@@ -238,46 +237,6 @@ public class App {
             // A non-DecisionTelecom error occurred during the operation (like connection
             // error).
             System.out.println("Error while sending Viber plus SMS message.");
-            e.printStackTrace();
-        }
-    }
-
-    private static void viberPlusSmsSendPromotionalMessage() {
-        try {
-            // Create new instance of the viber plus SMS client.
-            ViberClient viberClient = new ViberClient("<YOUR_ACCESS_KEY>");
-
-            // Create viber plus SMS message object. This one will be promotional message
-            // with message text, image and button..
-            ViberPlusSmsMessage message = new ViberPlusSmsMessage();
-            message.setSender("380504444444");
-            message.setReceiver("380504444444");
-            message.setText("Viber message");
-            message.setMessageType(ViberMessageType.TEXT_IMAGE_BUTTON);
-            message.setSourceType(ViberMessageSourceType.PROMOTIONAL);
-            message.setImageUrl("https://yourdomain.com/images/image.jpg");
-            message.setButtonCaption("Join Us");
-            message.setButtonAction("https://yourdomain.com/join-us");
-            message.setValidityPeriod(3600);
-            message.setSmsText("SMS Text");
-
-            // Call client SendMessage method to send viber plus SMS message.
-            long messageId = viberClient.sendMessage(message);
-
-            // SendMessage method should return Id of the sent Viber message.
-            System.out.printf("Message Id: %d\n", messageId);
-        } catch (ViberException e) {
-            // ViberException contains specific DecisionTelecom error with details of what
-            // went wrong during the operation.
-            ViberError error = e.getError();
-
-            System.out.printf(
-                    "Error while sending Viber plus SMS message.\nError name: %s\nError message: %s\nError code: %d\nError status: %d\n",
-                    error.getName(), error.getMessage(), error.getCode(), error.getStatus());
-        } catch (Exception e) {
-            // A non-DecisionTelecom error occurred during the operation (like connection
-            // error).
-            System.out.println("Error while sending Viber plus SMS message");
             e.printStackTrace();
         }
     }
